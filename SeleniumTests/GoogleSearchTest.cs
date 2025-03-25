@@ -1,25 +1,24 @@
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace DemoQaTests;
+namespace SeleniumTests;
 
 public class HeaderLogoTest
 {
-    private IWebDriver?driver;
+    private ChromeDriver?_driver;
 
     [SetUp]
     public void Setup()
     {
-        driver = new ChromeDriver();
-        driver.Manage().Window.Maximize();
+        _driver = new ChromeDriver();
+        _driver.Manage().Window.Maximize();
     }
 
     [Test]
     public void Header_ShouldContain_Logo()
     {
-        driver!.Navigate().GoToUrl("https://demoqa.com");
-        var logo = driver.FindElement(By.XPath("//header/a/img"));
+        _driver!.Navigate().GoToUrl("https://demoqa.com");
+        var logo = _driver.FindElement(By.XPath("//header/a/img"));
 
         Assert.That(logo.Displayed, Is.True);
     }
@@ -27,7 +26,7 @@ public class HeaderLogoTest
     [TearDown]
     public void Teardown()
     {
-        driver?.Quit();
-        driver?.Dispose();
+        _driver?.Quit();
+        _driver?.Dispose();
     }
 }

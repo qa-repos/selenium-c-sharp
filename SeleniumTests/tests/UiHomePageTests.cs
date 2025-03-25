@@ -1,9 +1,10 @@
-using OpenQA.Selenium;
+using lib.config;
 using OpenQA.Selenium.Chrome;
+using SeleniumTests.lib.pages;
 
-namespace SeleniumTests;
+namespace SeleniumTests.tests;
 
-public class HeaderLogoTest
+public class UiHomePageTests
 {
     private ChromeDriver?_driver;
 
@@ -15,12 +16,12 @@ public class HeaderLogoTest
     }
 
     [Test]
-    public void Header_ShouldContain_Logo()
+    public void HomePage_ShouldDisplay_Logo()
     {
-        _driver!.Navigate().GoToUrl("https://demoqa.com");
-        var logo = _driver.FindElement(By.XPath("//header/a/img"));
+        _driver!.Navigate().GoToUrl(Config.BaseUrl);
+        var homePage = new HomePage(_driver);
 
-        Assert.That(logo.Displayed, Is.True);
+        Assert.That(homePage.Logo.Displayed, Is.True);
     }
 
     [TearDown]

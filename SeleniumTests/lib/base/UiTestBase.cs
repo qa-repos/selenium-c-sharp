@@ -18,6 +18,7 @@ public abstract class UiTestBase
             options.AddArgument("--disable-gpu");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument($"--user-data-dir=/tmp/chrome-user-data-{Guid.NewGuid()}");
         }
 
         _driver = new ChromeDriver(options);

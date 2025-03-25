@@ -1,4 +1,4 @@
-using lib.config;
+using SeleniumTests.lib.config;
 
 namespace SeleniumTests.lib.helpers;
 

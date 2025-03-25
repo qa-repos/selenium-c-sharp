@@ -1,4 +1,4 @@
-using lib.config;
+using SeleniumTests.lib.config;
 using OpenQA.Selenium.Chrome;
 using SeleniumTests.lib.pages;
 

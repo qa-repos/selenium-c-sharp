@@ -5,7 +5,7 @@ namespace SeleniumTests.lib.Base;
 
 public abstract class UiTestBase
 {
-    private ChromeDriver?_driver;
+    protected ChromeDriver?Driver;
 
     [SetUp]
     public void Setup()
@@ -18,17 +18,16 @@ public abstract class UiTestBase
             options.AddArgument("--disable-gpu");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument($"--user-data-dir=/tmp/chrome-user-data-{Guid.NewGuid()}");
         }
 
-        _driver = new ChromeDriver(options);
-        _driver.Manage().Window.Maximize();
+        Driver = new ChromeDriver(options);
+        Driver.Manage().Window.Maximize();
     }
 
     [TearDown]
     public void Teardown()
     {
-        _driver?.Quit();
-        _driver?.Dispose();
+        Driver?.Quit();
+        Driver?.Dispose();
     }
 }

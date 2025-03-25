@@ -57,4 +57,4 @@ bin/
 obj/
 
 .idea
-.vscode
+.vscode.git

@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using SeleniumTests.lib.Base;
 using SeleniumTests.lib.config;
 using SeleniumTests.lib.pages;

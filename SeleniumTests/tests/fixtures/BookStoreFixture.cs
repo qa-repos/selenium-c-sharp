@@ -1,9 +1,9 @@
-using NUnit.Framework;
+using SeleniumTests.lib.Base;
 using SeleniumTests.lib.helpers;
 
 namespace SeleniumTests.tests.fixtures;
 
-public class BookStoreFixture
+public class BookStoreFixture : BaseTestWithLogging
 {
     protected BookStoreClient Client = null!;
 

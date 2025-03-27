@@ -35,6 +35,21 @@ public class BookStoreClient
         return await _client.PostAsJsonAsync("/Account/v1/User", user);
     }
 
+    public async Task<GetUserResponseDto> GetUserAsync(string userId, string token)
+    {
+        Console.WriteLine($"GET /Account/v1/User/{userId}");
+
+        var request = new HttpRequestMessage(HttpMethod.Get, $"/Account/v1/User/{userId}");
+        request.Headers.Add("Authorization", $"Bearer {token}");
+
+        var response = await _client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<GetUserResponseDto>() 
+               ?? new GetUserResponseDto();
+    }
+
+
     public async Task<TokenResponseDto?> GenerateTokenAsync(UserRequestDto user)
     {
         Console.WriteLine("POST /GenerateToken");

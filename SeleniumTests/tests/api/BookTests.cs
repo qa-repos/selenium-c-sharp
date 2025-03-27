@@ -36,9 +36,21 @@ public class BookTests : BookStoreFixture
     {
         var books = await Client.GetAllBooksAsync();
         var isbn = books.Books.First().ISBN;
-
         var addRes = await Client.AddBookToUserAsync(_userId, isbn, _token);
         Assert.That((int)addRes.StatusCode, Is.EqualTo(201));
+    }
+
+    [Test]
+    public async Task Verify_ThatBooksBeenAdded_ShouldReturn200()
+    {
+        var books = await Client.GetAllBooksAsync();
+        var isbn = books.Books.First().ISBN;
+        await Client.AddBookToUserAsync(_userId, isbn, _token);
+
+        var getRes = await Client.GetUserAsync(_userId, _token);
+        Assert.That(getRes, Is.Not.Null);
+        Assert.That(getRes.Books, Is.Not.Empty);
+        Assert.That(getRes.Books[0].ISBN, Is.EqualTo(isbn));
     }
 
     [Test]
